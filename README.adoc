@@ -1,0 +1,31 @@
+:doctype: article
+:author: Jerod Gawne
+:email: jerodgawne@gmail.com
+:docdate: October 19, 2018
+:revdate: {docdatetime}
+:description: jgutils; A Python utility module
+:keywords: python, module, utility
+
+:sectanchors:
+:sectlinks:
+:sectnums:
+:toc:
+
+:checkedbox: pass:normal[{startsb}&#10004;{endsb}]
+:checkbox: pass:normal[{startsb} {endsb}]
+:experimental:
+:icons: font
+
+= jgutils: A Python Utility Module
+
+This package is currently targeting Python3.7+ but it *should work with Python3.6+.
+
+== Persistent Dictionary (persistentdict)
+In-Memory dictionary with transparent disk-based backing.
+
+== References
+* https://www.python.org/[Python]
+* https://python-packaging.readthedocs.io/en/latest/[Python-Packaging]
+* https://packaging.python.org/tutorials/packaging-projects/[Python Packaging Tutorial]
+* https://pypi.org/pypi?%3Aaction=list_classifiers[Python List Classifiers]
+* https://github.com/jerodg/jgutils[GitHub]
