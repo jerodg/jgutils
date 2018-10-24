@@ -14,12 +14,18 @@ NFO = logger.isEnabledFor(logging.INFO)
 def get_files(folder: str, extension: str='', prefix: str='', match: str='', sortedby='name', reverse=False) -> list:
     """Get Files
 
-    :param folder: str; path to search
-    :param extension: str; endswith match
-    :param prefix: str; startswith match
-    :param match: str; 'in' match (doesn't support wildcards)
-    :param sortedby: str; (date|name|size)
-    :param reverse: bool; sort reversed
+    :param folder: str;
+        path to search
+    :param extension: str;
+        endswith match
+    :param prefix: str;
+        startswith match
+    :param match: str;
+        'in' match (doesn't support wildcards)
+    :param sortedby: str;
+        (date|name|size)
+    :param reverse: bool;
+        sort reversed
     :return: list"""
     try:
         with os.scandir(folder) as inc_files:
