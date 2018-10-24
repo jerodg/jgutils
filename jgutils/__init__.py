@@ -5,9 +5,10 @@ import logging
 import sys
 import traceback
 
+from jgutils import getfiles
 from jgutils import persistentdict
 
-___all___ = ['persistentdict']
+___all___ = ['getfiles', 'persistentdict']
 
 logger = logging.getLogger(__name__)
 DBG = logger.isEnabledFor(logging.DEBUG)
