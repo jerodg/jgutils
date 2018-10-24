@@ -22,7 +22,7 @@ def readme() -> str:
 if __name__ == '__main__':
     try:
         setuptools.setup(name='jgutils',
-                         version='0.1.0',
+                         version='0.2.0',
                          description='jerodg.com utilities module',
                          long_description=readme(),
                          long_description_content_type='text/asciidoctor',
@@ -35,7 +35,7 @@ if __name__ == '__main__':
                                       'Operating System :: Microsoft :: Windows :: Windows 10 :: Windows 8 :: Windows '
                                       '7 :: POSIX :: iOS',
                                       'Topic :: Utilities'],
-                         keywords='utility utilities persistent dictionary',
+                         keywords='utility utilities persistent dictionary file list listing',
                          url='http://github.com/jerodg/jgutils',
                          author='Jerod Gawne',
                          author_email='jerodgawne@gmail.com',
