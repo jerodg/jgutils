@@ -30,7 +30,6 @@ def get_files(folder: str, extension: str = '', prefix: str = '', match: str = '
     :return: list"""
     try:
         with os.scandir(folder) as inc_files:
-            logger.info(f'Found {len(inc_files)} file(s).')
             files = [entry.path for entry in inc_files
                      if not entry.name.startswith('.') and entry.is_file()
                      and entry.name.endswith(extension) and entry.name.startswith(prefix)
