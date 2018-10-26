@@ -11,7 +11,8 @@ DBG = logger.isEnabledFor(logging.DEBUG)
 NFO = logger.isEnabledFor(logging.INFO)
 
 
-def get_files(folder: str, extension: str='', prefix: str='', match: str='', sortedby='name', reverse=False) -> list:
+def get_files(folder: str, extension: str = '', prefix: str = '', match: str = '', sortby='name',
+              reverse=False) -> list:
     """Get Files
 
     :param folder: str;
@@ -22,7 +23,7 @@ def get_files(folder: str, extension: str='', prefix: str='', match: str='', sor
         startswith match
     :param match: str;
         'in' match (doesn't support wildcards)
-    :param sortedby: str;
+    :param sortby: str;
         (date|name|size)
     :param reverse: bool;
         sort reversed
@@ -37,14 +38,14 @@ def get_files(folder: str, extension: str='', prefix: str='', match: str='', sor
 
             logger.info(f'Found {len(files)} matching file(s).')
 
-        if sortedby == 'name':
+        if sortby == 'name':
             return sorted(files, key=lambda x: x.name, reverse=reverse)
-        elif sortedby == 'date':
+        elif sortby == 'date':
             return sorted(files, key=lambda x: os.stat(x).st_mtime, reverse=reverse)
-        elif sortedby == 'size':
+        elif sortby == 'size':
             return sorted(files, key=lambda x: os.stat(x).st_size, reverse=reverse)
         else:
-            logger.exception(f'Unknown sorted by parameter: {sortedby}')
+            logger.exception(f'Unknown sorted by parameter: {sortby}')
             return files
     except OSError as ose:
         logger.exception(ose)
