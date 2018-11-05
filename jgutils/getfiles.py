@@ -11,8 +11,8 @@ DBG = logger.isEnabledFor(logging.DEBUG)
 NFO = logger.isEnabledFor(logging.INFO)
 
 
-def get_files(folder: str, extension: str = '', prefix: str = '', match: str = '', sortby='name',
-              reverse=False) -> list:
+def get_files(folder: str, extension: str = '', prefix: str = '', match: str = '', sortby: str = 'name',
+              reverse: bool = False) -> list:
     """Get Files
 
     :param folder: str;
@@ -38,7 +38,7 @@ def get_files(folder: str, extension: str = '', prefix: str = '', match: str = '
             logger.info(f'Found {len(files)} matching file(s).')
 
         if sortby == 'name':
-            return sorted(files, key=lambda x: x.name, reverse=reverse)
+            return sorted(files, reverse=reverse)
         elif sortby == 'date':
             return sorted(files, key=lambda x: os.stat(x).st_mtime, reverse=reverse)
         elif sortby == 'size':
