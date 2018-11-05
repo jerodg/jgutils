@@ -7,7 +7,7 @@ import traceback
 
 from jgutils.tests import test_persistentdict
 
-___all___ = ['test_persistentdict']
+___all___ = ['test_getfiles', 'test_persistentdict', 'test_replace']
 
 logger = logging.getLogger(__name__)
 DBG = logger.isEnabledFor(logging.DEBUG)
