@@ -15,31 +15,35 @@ def readme() -> str:
     """Readme
 
     :return: str"""
-    with open('README.adoc') as f:
+    with open('README.md') as f:
         return f.read()
 
 
 if __name__ == '__main__':
     try:
         setuptools.setup(name='jgutils',
-                         version='0.1.0',
+                         version='0.2.5.1',
                          description='jerodg.com utilities module',
                          long_description=readme(),
-                         long_description_content_type='text/asciidoctor',
-                         classifiers=['Development Status :: 3 - Alpha',
-                                      'License :: OSI Approved :: MIT License',
-                                      'Programming Language :: Python :: 3.7',
-                                      'Environment :: Console',
-                                      'Intended Audience:: Developers',
-                                      'Natural Language :: English',
-                                      'Operating System :: Microsoft :: Windows :: Windows 10 :: Windows 8 :: Windows '
-                                      '7 :: POSIX :: iOS',
-                                      'Topic :: Utilities'],
-                         keywords='utility utilities persistent dictionary',
+                         long_description_content_type='text/markdown',
+                         classifiers=[
+                             'Development Status :: 3 - Alpha',
+                             'Environment :: Console',
+                             'Intended Audience :: End Users/Desktop',
+                             'Intended Audience :: Developers',
+                             'Intended Audience :: System Administrators',
+                             'License :: OSI Approved :: GNU Affero General Public License v3',
+                             'Natural Language :: English',
+                             'Operating System :: MacOS :: MacOS X',
+                             'Operating System :: Microsoft :: Windows',
+                             'Operating System :: POSIX',
+                             'Programming Language :: Python',
+                             'Topic :: Utilities'],
+                         keywords='utility utilities persistent dictionary file list listing',
                          url='http://github.com/jerodg/jgutils',
                          author='Jerod Gawne',
                          author_email='jerodgawne@gmail.com',
-                         license='MIT',
+                         license='AGPLv3',
                          packages=setuptools.find_packages(),
                          install_requires=[],
                          include_package_data=True,
