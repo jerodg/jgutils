@@ -14,7 +14,7 @@ NFO = logger.isEnabledFor(logging.INFO)
 
 
 class TestReplace(TestCase):
-    """TestReplace"""
+    """TestVarprint"""
 
     def test_replace(self):
         string = 'CN=X545679,OU=Taco,DC=dmzedzedfive,DC=nachoburrito,DC=com'
