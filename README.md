@@ -11,11 +11,25 @@ pip install jgutils
 
 Get Files (getfiles)
 ==
-
 * todo: add wild-card support
 * todo: tests
 
 File listing utility. Basic matching and sorting.
+
+Natural Sort (naturalsort)
+==
+* todo: more tests
+
+Sorting for Humans; Two Modes
+```python
+mylist = ['elm0', 'elm1', 'Elm2', 'elm9', 'elm10', 'Elm11', 'Elm12', 'elm13', 'elm']
+mode1 =  ['elm', 'elm0', 'elm1', 'Elm2', 'elm9', 'elm10', 'Elm11', 'Elm12', 'elm13']
+mode2 =  ['elm', 'elm0', 'elm1', 'Elm2', 'elm9', 'elm10', 'Elm11', 'Elm12', 'elm13']
+
+mylist1 = ['e0lm', 'e1lm', 'E2lm', 'e9lm', 'e10lm', 'E12lm', 'e13lm', 'elm', 'e01lm']
+mode1 =   ['e0lm', 'e1lm', 'e01lm', 'E2lm', 'e9lm', 'e10lm', 'E12lm', 'e13lm', 'elm']
+mode2 =   ['elm', 'e0lm', 'e1lm', 'E2lm', 'e9lm', 'e01lm', 'e10lm', 'E12lm', 'e13lm']
+```
 
 Persistent Dictionary (persistentdict)
 ==
