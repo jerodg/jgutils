@@ -8,7 +8,7 @@ import traceback
 from jgutils import getfiles
 from jgutils import persistentdict
 
-___all___ = ['getfiles', 'persistentdict']
+___all___ = ['getfiles', 'persistentdict', 'replace', 'varprint']
 
 logger = logging.getLogger(__name__)
 DBG = logger.isEnabledFor(logging.DEBUG)
