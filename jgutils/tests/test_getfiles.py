@@ -15,7 +15,7 @@ NFO = logger.isEnabledFor(logging.INFO)
 
 
 class TestGetfiles(TestCase):
-    """TestReplace"""
+    """TestGetFiles"""
 
     def test_return_type(self):
         files = getfiles.get_files(folder=os.path.realpath('./'))
