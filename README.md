@@ -28,6 +28,15 @@ Replace (replace)
 Based on the built-in replace.
 Accepts a list of 'old' substrings to be replaced by a single 'new' substring.
 
+Varprint (varprint)
+==
+Prints the name of the variable and the value.
+ 
+```bash
+[<variable_name>] (<variable_length>): <variable_content>
+[a] (8): some_var
+```
+
 References
 ==
 * [Python](https://www.python.org/)
