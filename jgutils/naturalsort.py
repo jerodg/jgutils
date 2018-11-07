@@ -2,7 +2,7 @@
 # coding=utf-8
 """Natural-Sort: Jerod Gawne, 2016.05.04 <https://github.com/jerodg/jgutils>"""
 
-import logging.config
+import logging
 import re
 import sys
 import traceback
