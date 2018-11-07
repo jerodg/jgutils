@@ -22,7 +22,7 @@ def readme() -> str:
 if __name__ == '__main__':
     try:
         setuptools.setup(name='jgutils',
-                         version='0.5.0.0',
+                         version='0.5.0.1',
                          description='jerodg.com utilities module',
                          long_description=readme(),
                          long_description_content_type='text/markdown',
