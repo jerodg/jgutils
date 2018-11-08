@@ -47,7 +47,7 @@ Varprint (varprint)
 Prints the name of the variable and the value.
  
 ```bash
-[<variable_name>] (<variable_length>): <variable_content>
+[<variable_name>]<variable_type>(<variable_length>): <variable_content>
 [a] (8): some_var
 ```
 
