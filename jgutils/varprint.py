@@ -1,10 +1,10 @@
 #!/usr/bin/env python3.7
 # coding=utf-8
 """Variable Printer: Jerod Gawne, 2018.02.27 <https://github.com/jerodg/jgutils>"""
+import inspect
 import logging.config
 import sys
 import traceback
-import inspect
 from typing import NoReturn
 
 logger = logging.getLogger(__name__)
@@ -22,14 +22,14 @@ def varprint(var) -> NoReturn:
     :param var: object
     :return: NoReturn"""
     callers_local_vars = inspect.currentframe().f_back.f_locals.items()
+
     for var_name, var_val in callers_local_vars:
         if var_val is var:
-            var_name = var_name
             try:
-                print(f'[{var_name}] ({len(var)}): {var}')
+                print(f'[{var_name}]<{type(var)}>({len(var)}): {var}')
             except TypeError as te:
                 logger.warning(te)
-                print(f'[{var_name}] ({len(str(var))}): {var}')
+                print(f'[{var_name}]<{type(var)}>({len(var)}): {var}')
             return
 
 
