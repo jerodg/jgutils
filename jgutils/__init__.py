@@ -6,7 +6,10 @@ import sys
 import traceback
 
 from jgutils import getfiles
+from jgutils import naturalsort
 from jgutils import persistentdict
+from jgutils import replace
+from jgutils import varprint
 
 ___all___ = ['getfiles', 'naturalsort', 'persistentdict', 'replace', 'varprint']
 
