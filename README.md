@@ -42,6 +42,21 @@ Replace (replace)
 Based on the built-in replace.
 Accepts a list of 'old' substrings to be replaced by a single 'new' substring.
 
+USHoliday (usholiday)
+==
+Tests for the following US federal holidays as well as observed days.
+Observed: If a holiday falls on a Saturday observance => Friday, Sunday => Monday
+
+* New years: January 1
+* Martin Luther King Jr.: 3rd Monday in January
+* Washington's Birthday (Presidents): 3rd Monday in February
+* Memorial: Last Monday in May
+* Independance: July 4
+* Labor: First Monday in September
+* Columbus: Second Monday in October
+* Veterans: November 11
+* Thanksgiving: Fourth Thursday in November
+
 Varprint (varprint)
 ==
 Prints the name of the variable and the value.
@@ -50,7 +65,6 @@ Prints the name of the variable and the value.
 [<variable_name>]<variable_type>(<variable_length>): <variable_content>
 [a] (8): some_var
 ```
-
 References
 ==
 * [Python](https://www.python.org/)
