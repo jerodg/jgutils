@@ -18,7 +18,7 @@ File listing utility. Basic matching and sorting.
 
 Natural Sort (naturalsort)
 ==
-* todo: more tests
+* todo: test_numeric_intermixed_mode1 sometimes returns different output with different order input
 
 Sorting for Humans; Two Modes
 ```python
