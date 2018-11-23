@@ -1,11 +1,10 @@
 #!/usr/bin/env python3.7
-# coding=utf-8
 """Natural-Sort: Jerod Gawne, 2016.05.04 <https://github.com/jerodg/jgutils>"""
-
 import logging
-import re
 import sys
 import traceback
+
+import re
 
 logger = logging.getLogger(__name__)
 DBG = logger.isEnabledFor(logging.DEBUG)
@@ -29,6 +28,8 @@ def naturalsort(ls, mode=1) -> list:
     :param ls: list
     :param mode: int (1|2)
     :return: list"""
+    if type(ls[0]) is int:
+        return sorted(ls)
 
     if mode == 1:
         return sorted(ls, key=lambda _: [int(s) if s.isdigit() else s.lower() for s in re.split(DRE, _)])
