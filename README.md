@@ -8,6 +8,9 @@ Installation
 ```bash
 pip install jgutils
 ```
+Flatten (flatten)
+==
+Flatten embedded lists/tuples into a single generator.
 
 Get Files (getfiles)
 ==
@@ -62,8 +65,8 @@ Varprint (varprint)
 Prints the name of the variable and the value.
  
 ```bash
-[<variable_name>]<variable_type>(<variable_length>): <variable_content>
-[a] (8): some_var
+<variable_name>: {variable_type} = (<variable_length>) <variable_content>
+some_var: String = (5) hello
 ```
 References
 ==
