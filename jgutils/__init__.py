@@ -7,13 +7,14 @@ import traceback
 
 from jgutils import flatten
 from jgutils import getfiles
+from jgutils import getips
 from jgutils import naturalsort
 from jgutils import persistentdict
 from jgutils import replace
 from jgutils import usholiday
 from jgutils import varprint
 
-___all___ = ['flatten', 'getfiles', 'naturalsort', 'persistentdict', 'replace', 'usholiday', 'varprint']
+___all___ = ['flatten', 'getfiles', 'getips', 'naturalsort', 'persistentdict', 'replace', 'usholiday', 'varprint']
 
 logger = logging.getLogger(__name__)
 DBG = logger.isEnabledFor(logging.DEBUG)
