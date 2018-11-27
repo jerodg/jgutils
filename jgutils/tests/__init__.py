@@ -7,6 +7,7 @@ import traceback
 
 from jgutils.tests import test_flatten
 from jgutils.tests import test_getfiles
+from jgutils.tests import test_getips
 from jgutils.tests import test_naturalsort
 from jgutils.tests import test_persistentdict
 from jgutils.tests import test_replace
@@ -15,6 +16,7 @@ from jgutils.tests import test_varprint
 
 ___all___ = ['test_flatten',
              'test_getfiles',
+             'test_getips',
              'test_naturalsort',
              'test_persistentdict',
              'test_replace',
