@@ -19,6 +19,18 @@ Get Files (getfiles)
 
 File listing utility. Basic matching and sorting.
 
+Get IPs (getips)
+==
+Attempts to resolve ipv4/6 IPs for LAN/WAN adapters.
+
+Returns an object with:
+
+obj.lan4, obj.lan6, obj.wan4, obj.wan6
+
+Context manager is implemented if desired.
+
+`__repr__` is prety printed dictionary
+
 Natural Sort (naturalsort)
 ==
 * todo: test_numeric_intermixed_mode1 sometimes returns different output with different order input
@@ -47,6 +59,8 @@ Accepts a list of 'old' substrings to be replaced by a single 'new' substring.
 
 USHoliday (usholiday)
 ==
+todo: more tests(leap year/day)
+
 Tests for the following US federal holidays as well as observed days.
 Observed: If a holiday falls on a Saturday observance => Friday, Sunday => Monday
 
