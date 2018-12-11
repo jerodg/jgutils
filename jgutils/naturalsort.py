@@ -12,7 +12,7 @@ NFO = logger.isEnabledFor(logging.INFO)
 DRE = re.compile(r'(\d+)')
 
 
-def naturalsort(ls, mode=1) -> list:
+def naturalsort(ls: list, mode: int = 1) -> list:
     """Natural-Sort
 
     Sorting for Humans; Two Modes
