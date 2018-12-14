@@ -1,5 +1,4 @@
 #!/usr/bin/env python3.7
-# coding=utf-8
 """Variable Printer: Jerod Gawne, 2018.02.27 <https://github.com/jerodg/jgutils>"""
 import inspect
 import logging.config
@@ -25,11 +24,13 @@ def varprint(var) -> NoReturn:
 
     for var_name, var_val in callers_local_vars:
         if var_val is var:
+            typ = str(type(var))
+            typ = typ[typ.index("'") + 1:-2]
             try:
-                print(f'[{var_name}]<{type(var)}>({len(var)}): {var}')
+                print(f'{var_name}: {typ} = ({len(var)}) {var}')
             except TypeError as te:
                 logger.warning(te)
-                print(f'[{var_name}]<{type(var)}>({len(var)}): {var}')
+                print(f'{var_name}: error = ({len(var)}) {var}')
             return
 
 

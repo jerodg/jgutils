@@ -2,10 +2,12 @@
 # coding=utf-8
 """Test Getfiles: Jerod Gawne, 2018.11.05 <https://github.com/jerodg/jgutils>"""
 import logging
-import os
 import sys
 import traceback
+from typing import NoReturn
 from unittest import TestCase
+
+import os
 
 from jgutils import getfiles
 
@@ -17,7 +19,9 @@ NFO = logger.isEnabledFor(logging.INFO)
 class TestGetfiles(TestCase):
     """TestGetFiles"""
 
-    def test_return_type(self):
+    def test_return_type(self) -> NoReturn:
+        """
+        :return: NoReturn"""
         files = getfiles.get_files(folder=os.path.realpath('./'))
         self.assertTrue(isinstance(files, list))
 
