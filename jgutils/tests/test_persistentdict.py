@@ -20,6 +20,19 @@ class TestPersistentDict(TestCase):
         d = PD(path=os.path.realpath('./test_dict.pdb'))
         self.assertTrue(isinstance(d, dict))
 
+    def test_file_creation(self):
+        with PD(path=os.path.realpath('./test.pd')) as pd:
+            pd['test'] = 123
+
+    def test_file_creation2(self):
+        path = os.path.realpath('./test.pd')
+
+        with PD(path=path) as pd:
+            print('pd[test]: ', pd['test'])
+            self.assertTrue(pd['test'] == 123)
+
+        os.remove(path)
+
 
 if __name__ == '__main__':
     try:
