@@ -1,5 +1,4 @@
 #!/usr/bin/env python3.7
-# coding=utf-8
 """jgutils Setup: Jerod Gawne, 2018.10.19 <https://github.com/jerodg/jgutils>"""
 import logging
 import sys
@@ -22,7 +21,7 @@ def readme() -> str:
 if __name__ == '__main__':
     try:
         setuptools.setup(name='jgutils',
-                         version='0.8.0.10',
+                         version='0.8.0.11',
                          description='jerodg.com utilities module',
                          long_description=readme(),
                          long_description_content_type='text/markdown',
