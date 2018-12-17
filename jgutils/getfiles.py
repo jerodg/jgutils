@@ -1,5 +1,4 @@
 #!/usr/bin/env python3.7
-# coding=utf-8
 """Get Files: Jerod Gawne, 2018.03.02 <https://github.com/jerodg/jgutils>"""
 import logging.config
 import os
