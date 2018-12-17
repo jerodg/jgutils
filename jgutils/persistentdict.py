@@ -1,5 +1,4 @@
 #!/usr/bin/env python3.7
-# coding=utf-8
 """Persistent Dictionary: Jerod Gawne, 2016.10.25 <https://github.com/jerodg/jgutils>"""
 import copy
 import csv
@@ -36,13 +35,13 @@ class PersistentDict(dict):
             Octal
         :param fmt: str; 
             (csv|json|pickle)"""
-        super().__init__()
         self.PATH = path
         self.MODE = mode
         self.ACCESS = access
         self.FORMAT = fmt
 
         self.load()
+        super().__init__()
 
     def __enter__(self) -> object:
         return self
@@ -130,13 +129,5 @@ class PersistentDict(dict):
 if __name__ == '__main__':
     try:
         print(__doc__)
-        PATH = os.path.realpath('./test.pdb')
-        with PersistentDict(path=PATH) as pd:
-            pd['test'] = 123
-
-        with PersistentDict(path=PATH) as pd:
-            print('pd[test]: ', pd['test'])
-
-        os.remove(PATH)
     except Exception as excp:
         logger.exception(traceback.print_exception(*sys.exc_info()))
