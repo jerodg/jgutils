@@ -1,5 +1,4 @@
 #!/usr/bin/env python3.7
-# coding=utf-8
 """Test Persistent Dict: Jerod Gawne, 2018.10.19 <https://github.com/jerodg/jgutils>"""
 import logging
 import os
@@ -7,7 +6,7 @@ import sys
 import traceback
 from unittest import TestCase
 
-from jgutils import persistentdict
+from jgutils.persistentdict import PersistentDict as PD
 
 logger = logging.getLogger(__name__)
 DBG = logger.isEnabledFor(logging.DEBUG)
@@ -18,7 +17,7 @@ class TestPersistentDict(TestCase):
     """TestPersistentDict"""
 
     def test_is_dict(self):
-        d = persistentdict.PersistentDict(path=os.path.realpath('./test_dict.pdb'))
+        d = PD(path=os.path.realpath('./test_dict.pdb'))
         self.assertTrue(isinstance(d, dict))
 
 
