@@ -18,6 +18,8 @@ def varprint(var) -> NoReturn:
 
     [<variable_name>] (<variable_length>): <variable_content>
 
+    Not all objects support length
+
     :param var: object
     :return: NoReturn"""
     callers_local_vars = inspect.currentframe().f_back.f_locals.items()
