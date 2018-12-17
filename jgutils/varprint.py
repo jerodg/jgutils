@@ -29,8 +29,11 @@ def varprint(var) -> NoReturn:
             try:
                 print(f'{var_name}: {typ} = ({len(var)}) {var}')
             except TypeError as te:
-                logger.warning(te)
-                print(f'{var_name}: error = ({len(var)}) {var}')
+                try:
+                    print(f'{var_name}: {typ} = (?) {var}')
+                except TypeError:
+                    print(f'{var_name}: unknown-type = (?) {var}')
+
             return
 
 
