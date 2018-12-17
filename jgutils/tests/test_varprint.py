@@ -1,12 +1,11 @@
 #!/usr/bin/env python3.7
-# coding=utf-8
 """Test Varprint: Jerod Gawne, 2018.11.06 <https://github.com/jerodg/jgutils>"""
 import logging
 import sys
 import traceback
 from unittest import TestCase
 
-from jgutils import varprint
+from jgutils.varprint import varprint as vp
 
 logger = logging.getLogger(__name__)
 DBG = logger.isEnabledFor(logging.DEBUG)
@@ -18,7 +17,15 @@ class TestVarprint(TestCase):
 
     def test_function(self):
         a = 'some_var'
-        varprint.varprint(a)
+        vp(a)
+
+    def test_object_without_length(self):
+        class A(object):
+            def __init__(self):
+                self.b = 0
+
+        a = A()
+        vp(a)
 
 
 if __name__ == '__main__':
