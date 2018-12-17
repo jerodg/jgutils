@@ -1,5 +1,4 @@
 #!/usr/bin/env python3.7
-# coding=utf-8
 """Replace: Jerod Gawne, 2018.11.05 <https://github.com/jerodg/jgutils>"""
 import logging.config
 import sys
