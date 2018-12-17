@@ -1,5 +1,4 @@
 #!/usr/bin/env python3.7
-# coding=utf-8
 """Test Get IPs: Jerod Gawne, 2018.11.27 <https://github.com/jerodg/jgutils>"""
 import logging
 import sys
