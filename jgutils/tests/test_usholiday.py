@@ -1,5 +1,4 @@
 #!/usr/bin/env python3.7
-# coding=utf-8
 """Test USHoliday: Jerod Gawne, 2018.11.21 <https://github.com/jerodg/jgutils>"""
 import logging
 import sys
