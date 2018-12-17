@@ -1,5 +1,4 @@
 #!/usr/bin/env python3.7
-# coding=utf-8
 """jgutils Tests Initialization: Jerod Gawne, 2018.10.19 <https://github.com/jerodg/jgutils>"""
 import logging
 import sys
