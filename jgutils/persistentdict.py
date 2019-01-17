@@ -1,47 +1,44 @@
 #!/usr/bin/env python3.7
 """Persistent Dictionary: Jerod Gawne, 2016.10.25 <https://github.com/jerodg/jgutils>"""
-import copy
 import csv
 import json
-import logging
-import os
 import pickle
-import shutil
-import sys
-import tempfile
-import traceback
+from copy import deepcopy
+from logging import DEBUG, INFO, getLogger
+from os import R_OK, access, chmod, fdopen, remove
+from shutil import move
+from sys import exc_info
+from tempfile import mkstemp
+from traceback import print_exception
 from typing import NoReturn
 
-logger = logging.getLogger(__name__)
-DBG = logger.isEnabledFor(logging.DEBUG)
-NFO = logger.isEnabledFor(logging.INFO)
+logger = getLogger(__name__)
+DBG = logger.isEnabledFor(DEBUG)
+NFO = logger.isEnabledFor(INFO)
+
+
+# todo: add HDF5 support
+# todo: add zstd compression
 
 
 class PersistentDict(dict):
-    """Shelve-Persistent/In-Memory dictionary
+    """Persistent, In-Memory dictionary
      - Auto-Discovery of input-file type
      - Output file-format: pickle, json, or csv"""
-    PATH: str
-    MODE: str
-    ACCESS: int
-    FORMAT: str
 
     def __init__(self, path: str, mode: str = 'c', access: int = None, fmt: str = 'pickle'):
         """
         :param path: str            
-        :param mode: str; 
-            (r|c|n); r(eadonly), c(reate), n(ew)
-        :param access: int; 
-            Octal
-        :param fmt: str; 
-            (csv|json|pickle)"""
-        self.PATH = path
-        self.MODE = mode
-        self.ACCESS = access
-        self.FORMAT = fmt
-
-        self.load()
+        :param mode: str; (r|c|n); r(eadonly), c(reate), n(ew)
+        :param access: int; Octal
+        :param fmt: str; (csv|json|pickle)"""
         super().__init__()
+        self.PATH: str = path
+        self.MODE: str = mode
+        self.ACCESS: int = access
+        self.FORMAT: str = fmt
+
+        self.__load()
 
     def __enter__(self) -> object:
         return self
@@ -53,11 +50,10 @@ class PersistentDict(dict):
         """
         :param requesteddeepcopy:
         :return: PersistentDict()"""
-        return copy.deepcopy(self)
+        return deepcopy(self)
 
     def sync(self) -> NoReturn:
-        """Sync to File
-
+        """
         Save to temp file
         Overwrite persistence file with temp
         Set access permissions
@@ -74,10 +70,10 @@ class PersistentDict(dict):
                 logger.info('Dictionary is empty; nothing to write')
             return
 
-        fd, path = tempfile.mkstemp(suffix=b'.tmp', text=False if self.FORMAT == 'pickle' else True)
+        fd, path = mkstemp(suffix=b'.tmp', text=False if self.FORMAT == 'pickle' else True)
 
         try:
-            with os.fdopen(fd, 'wb+' if self.FORMAT == 'pickle' else 'w+') as fileobj:
+            with fdopen(fd, 'wb+' if self.FORMAT == 'pickle' else 'w+') as fileobj:
                 if self.FORMAT == 'csv':
                     csv.writer(fileobj).writerows(self.items())
                 elif self.FORMAT == 'json':
@@ -88,32 +84,29 @@ class PersistentDict(dict):
                     raise NotImplementedError(f'Unknown format: {self.FORMAT}')
         except OSError as ose:
             logger.exception(ose)
-            os.remove(path)
+            remove(path)
 
         try:
-            shutil.move(path, self.PATH)
+            move(path, self.PATH)
         except OSError as ose:
             logger.exception(ose)
 
-        if self.ACCESS is not None:
+        if self.ACCESS:
             try:
-                os.chmod(self.PATH, self.ACCESS)
+                chmod(self.PATH, self.ACCESS)
             except OSError as ose:
                 logger.exception(ose)
 
         if NFO:
             logger.info('Sync to disk complete.')
 
-    def load(self) -> NoReturn:
-        """Load from disk
-
-        :return: NoReturn"""
+    def __load(self) -> NoReturn:
+        """:return: NoReturn"""
         if self.MODE == 'n':
             if NFO:
                 logger.info('File mode set to n(ew); not loading existing file.')
             return
-
-        if self.MODE != 'n' and os.access(self.PATH, os.R_OK):
+        elif access(self.PATH, R_OK):
             with open(self.PATH, 'rb' if self.FORMAT == 'pickle' else 'r') as fileobj:
                 for loader in (pickle.load, json.load, csv.reader):
                     fileobj.seek(0)
@@ -122,12 +115,12 @@ class PersistentDict(dict):
                     except Exception as e:
                         logger.exception(e)
                         raise ValueError('File not in a supported format')
-            if NFO:
-                logger.info('Existing file sucessfully loaded.')
+        if NFO:
+            logger.info('Existing file sucessfully loaded.')
 
 
 if __name__ == '__main__':
     try:
         print(__doc__)
     except Exception as excp:
-        logger.exception(traceback.print_exception(*sys.exc_info()))
+        logger.exception(print_exception(*exc_info()))
