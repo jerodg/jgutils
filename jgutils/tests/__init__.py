@@ -1,24 +1,32 @@
 #!/usr/bin/env python3.7
 """jgutils Tests Initialization: Jerod Gawne, 2018.10.19 <https://github.com/jerodg/jgutils>"""
 import logging
-import sys
-import traceback
+from sys import exc_info
+from traceback import print_exception
 
-from jgutils.tests import test_flatten
-from jgutils.tests import test_getfiles
-from jgutils.tests import test_getips
-from jgutils.tests import test_naturalsort
-from jgutils.tests import test_persistentdict
-from jgutils.tests import test_replace
-from jgutils.tests import test_usholiday
-from jgutils.tests import test_varprint
+from jgutils.tests import (test_dhms,
+                           test_easymail,
+                           test_flatten,
+                           test_getfiles,
+                           test_getips,
+                           test_memsize,
+                           test_naturalsort,
+                           test_persistentdict,
+                           test_replace,
+                           test_request_debug,
+                           test_usholiday,
+                           test_varprint, )
 
-___all___ = ['test_flatten',
+___all___ = ['test_dhms',
+             'test_easymail',
+             'test_flatten',
              'test_getfiles',
              'test_getips',
+             'test_memsize',
              'test_naturalsort',
              'test_persistentdict',
              'test_replace',
+             'test_request_debug',
              'test_ushoiday',
              'test_varprint']
 
@@ -30,4 +38,4 @@ if __name__ == '__main__':
     try:
         print(__doc__)
     except Exception as excp:
-        logger.exception(traceback.print_exception(*sys.exc_info()))
+        logger.exception(print_exception(*exc_info()))
