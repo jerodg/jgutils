@@ -1,19 +1,36 @@
 #!/usr/bin/env python3.7
 """jgutils Initialization: Jerod Gawne, 2018.10.19 <https://github.com/jerodg/jgutils>"""
 import logging
-import sys
-import traceback
+from sys import exc_info
+from traceback import print_exception
 
-from jgutils import flatten
-from jgutils import getfiles
-from jgutils import getips
-from jgutils import naturalsort
-from jgutils import persistentdict
-from jgutils import replace
-from jgutils import usholiday
-from jgutils import varprint
+from jgutils import (autosize,
+                     dhms,
+                     easymail,
+                     flatten,
+                     getfiles,
+                     getips,
+                     memsize,
+                     naturalsort,
+                     persistentdict,
+                     replace,
+                     request_debug,
+                     usholiday,
+                     varprint, )
 
-___all___ = ['flatten', 'getfiles', 'getips', 'naturalsort', 'persistentdict', 'replace', 'usholiday', 'varprint']
+___all___ = ['autosize',
+             'dhms',
+             'easymail',
+             'flatten',
+             'getfiles',
+             'getips',
+             'memsize',
+             'naturalsort',
+             'persistentdict',
+             'replace',
+             'requestdebug'
+             'usholiday',
+             'varprint']
 
 logger = logging.getLogger(__name__)
 DBG = logger.isEnabledFor(logging.DEBUG)
@@ -23,4 +40,4 @@ if __name__ == '__main__':
     try:
         print(__doc__)
     except Exception as excp:
-        logger.exception(traceback.print_exception(*sys.exc_info()))
+        logger.exception(print_exception(*exc_info()))
