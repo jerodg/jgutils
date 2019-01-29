@@ -11,6 +11,10 @@ DBG = logger.isEnabledFor(logging.DEBUG)
 NFO = logger.isEnabledFor(logging.INFO)
 
 
+# todo: handle classes
+# todo: handle generic objects
+
+
 def varprint(var) -> NoReturn:
     """Variable Printer
 
@@ -26,17 +30,23 @@ def varprint(var) -> NoReturn:
 
     for var_name, var_val in callers_local_vars:
         if var_val is var:
-            typ = str(type(var))
+            t = type(var)
+            typ = str(t)
             typ = typ[typ.index("'") + 1:-2]
-            try:
-                print(f'{var_name}: {typ} = ({len(var)}) {var}')
-            except TypeError as te:
-                try:
-                    print(f'{var_name}: {typ} = (?) {var}')
-                except TypeError:
-                    print(f'{var_name}: unknown-type = (?) {var}')
 
-            return
+            try:
+                length = len(var)
+            except TypeError:
+                length = 'N/A'
+
+            if t is list:
+                print(f'{var_name}: {typ} = ({length}):')
+                [print(f'\t{i}') for i in var]
+            elif t is dict:
+                print(f'{var_name}: {typ} = ({length}):')
+                [print(f'\t{k}: {v}') for k, v in var.items()]
+            else:
+                print(f'{var_name}: {typ} = ({length}) {var}')
 
 
 if __name__ == '__main__':
