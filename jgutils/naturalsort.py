@@ -1,10 +1,9 @@
 #!/usr/bin/env python3.7
 """Natural-Sort: Jerod Gawne, 2016.05.04 <https://github.com/jerodg/jgutils>"""
 import logging
+import re
 import sys
 import traceback
-
-import re
 
 logger = logging.getLogger(__name__)
 DBG = logger.isEnabledFor(logging.DEBUG)
@@ -12,7 +11,7 @@ NFO = logger.isEnabledFor(logging.INFO)
 DRE = re.compile(r'(\d+)')
 
 
-def naturalsort(ls: list, mode: int = 1) -> list:
+def naturalsort(ls: list, mode: int = 1, sort_order: str = 'ASC') -> list:
     """Natural-Sort
 
     Sorting for Humans; Two Modes
@@ -27,15 +26,18 @@ def naturalsort(ls: list, mode: int = 1) -> list:
 
     :param ls: list
     :param mode: int (1|2)
+    :param sort_order:
     :return: list"""
+    rvrs = True if sort_order == 'DESC' else False
+
     if type(ls[0]) is int:
         return sorted(ls)
 
     if mode == 1:
-        return sorted(ls, key=lambda _: [int(s) if s.isdigit() else s.lower() for s in re.split(DRE, _)])
+        return sorted(ls, key=lambda _: [int(s) if s.isdigit() else s.lower() for s in re.split(DRE, _)], reverse=rvrs)
     elif mode == 2:
         fmt = ['{', '0', ':', '>', str(len(max(ls, key=len))), '}']
-        return sorted(ls, key=lambda _: ''.join(fmt).format(_, max(ls, key=len)).lower())
+        return sorted(ls, key=lambda _: ''.join(fmt).format(_, max(ls, key=len)).lower(), reverse=rvrs)
     else:
         raise NotImplementedError
 
