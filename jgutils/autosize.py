@@ -31,6 +31,9 @@ DP = {'B':  '',
       'YB': 'Yotta'}
 
 
+# todo: allow to specify units
+
+
 def autosize(path: Union[str, int] = None, size: int = None, prefix: str = 'binary', short: bool = True) -> str:
     """Autosize
 
@@ -41,8 +44,11 @@ def autosize(path: Union[str, int] = None, size: int = None, prefix: str = 'bina
     :param prefix: string; binary|si
     :param short: bool
     :return: str"""
-    # todo: check for existence of file or catch exception
-    numbytes = stat(path).st_size or size
+    try:
+        numbytes = stat(path).st_size or size
+    except FileNotFoundError as fnfe:
+        logger.exception(fnfe)
+        return f'File: {path} => Not Found'
 
     for key, value in BP.items() if prefix == 'binary' else DP.items():
         if abs(numbytes) < (1024.0 if prefix == 'binary' else 1000.0):
