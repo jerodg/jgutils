@@ -9,7 +9,7 @@ DBG = logger.isEnabledFor(logging.DEBUG)
 NFO = logger.isEnabledFor(logging.INFO)
 
 
-def replace(string: str, old: list, new: str, count: int = None) -> str:
+def replace(string: str, old: list, new: str, count: int = -1) -> str:
     """Replace
 
     Based on the built-in replace.
@@ -22,14 +22,12 @@ def replace(string: str, old: list, new: str, count: int = None) -> str:
     :param new: str
     :param count: int
     :return: str"""
+    # todo: needs testing after rewrite
     if type(old) is not list:
         old = list(old)
 
     for s in old:
-        if count:
-            string = string.replace(s, new, count)
-        else:
-            string = string.replace(s, new)
+        string = string.replace(s, new, count)
 
     return string
 
