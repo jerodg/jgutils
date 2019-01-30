@@ -3,25 +3,28 @@
 import logging
 import sys
 import traceback
+from os.path import realpath
 from typing import NoReturn
 from unittest import TestCase
 
-import os
-
-from jgutils import getfiles
+from jgutils.getfiles import get_files
 
 logger = logging.getLogger(__name__)
 DBG = logger.isEnabledFor(logging.DEBUG)
 NFO = logger.isEnabledFor(logging.INFO)
 
 
-class TestGetfiles(TestCase):
-    """TestGetFiles"""
+# todo: test recursion
+# todo: test prefix
+# todo: test suffix
+# todo: test match
+# todo: test sort
+# todo: test main()/console script/entry point
 
+
+class TestGetfiles(TestCase):
     def test_return_type(self) -> NoReturn:
-        """
-        :return: NoReturn"""
-        files = getfiles.get_files(folder=os.path.realpath('./'))
+        files = get_files(path=realpath('./'))
         self.assertTrue(isinstance(files, list))
 
 
