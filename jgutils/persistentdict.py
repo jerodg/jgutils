@@ -19,7 +19,9 @@ NFO = logger.isEnabledFor(INFO)
 
 # todo: add HDF5 support
 # todo: add zstd compression
-
+# todo: implement features from: https://github.com/pdrb/dbj/blob/master/dbj.py
+# - find(keys), insert, delete, many, autosave, killprotect, size, update, sort, search text(values),
+# - backups(versioning)
 
 class PersistentDict(dict):
     """Persistent, In-Memory dictionary
