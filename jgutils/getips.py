@@ -2,17 +2,23 @@
 """Get IPs: Jerod Gawne, 2017.03.22 <https://github.com/jerodg/jgutils>"""
 import logging
 import pprint
+import random
 import socket
-import sys
-import traceback
+from sys import exc_info
+from traceback import print_exception
 from typing import NoReturn
 
-import random
 import requests
 
 logger = logging.getLogger(__name__)
 DBG = logger.isEnabledFor(logging.DEBUG)
 NFO = logger.isEnabledFor(logging.INFO)
+
+
+# todo: add to bin
+# todo: convert to function?
+# todo: create binary for this (could be useful system wide)
+# todo: use aiohttp instead
 
 
 class GetIps(object):
@@ -93,4 +99,4 @@ if __name__ == '__main__':
     try:
         print(__doc__)
     except Exception as excp:
-        logger.exception(traceback.print_exception(*sys.exc_info()))
+        logger.exception(print_exception(*exc_info()))
