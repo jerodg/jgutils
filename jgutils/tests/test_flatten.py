@@ -3,8 +3,7 @@
 import logging
 import sys
 import traceback
-from typing import Generator
-from typing import NoReturn
+from typing import Generator, NoReturn
 from unittest import TestCase
 
 from jgutils import flatten
