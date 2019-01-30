@@ -41,12 +41,12 @@ def varprint(var) -> NoReturn:
 
             if t is list:
                 print(f'{var_name}: {typ} = ({length}):')
-                [print(f'\t{i}') for i in var]
+                [print(f'\t{i}') for i in var_val]
             elif t is dict:
                 print(f'{var_name}: {typ} = ({length}):')
-                [print(f'\t{k}: {v}') for k, v in var.items()]
+                [print(f'\t{k}: {v}') for k, v in var_val.items()]
             else:
-                print(f'{var_name}: {typ} = ({length}) {var}')
+                print(f'{var_name}: {typ} = ({length}) {var_val}')
 
 
 if __name__ == '__main__':
