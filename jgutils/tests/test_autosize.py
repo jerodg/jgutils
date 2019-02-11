@@ -5,7 +5,8 @@ import sys
 import traceback
 from os.path import realpath
 from typing import NoReturn
-from unittest import TestCase
+
+import pytest
 
 from jgutils.autosize import autosize
 from jgutils.print_banner import print_banner as printb
@@ -15,24 +16,30 @@ DBG = logger.isEnabledFor(logging.DEBUG)
 NFO = logger.isEnabledFor(logging.INFO)
 
 
-class TestAutosize(TestCase):
-    """Test Autosize"""
+@pytest.fixture(autouse=True)
+def init_cache(request):
+    pass
 
-    def test_return_type(self) -> NoReturn:
-        print('\n')
-        printb('Test Return Type')
+
+class TestAutosize(object):
+    def test_return_type(self, request) -> NoReturn:
         file = realpath('./data/test_autosize.txt')
         size = autosize(file)
-        print(f'File: {file}\nSize: {size}')
-        self.assertTrue(size == '3.1 KiB')
 
-    def test_file_not_found(self) -> NoReturn:
-        print('\n')
-        printb('Test File Not Found')
+        assert size == '3.1 KiB'
+
+        printb('Test Return Type')
+        print(f'File: {file}\nSize: {size}')
+
+    def test_file_not_found(self, request) -> NoReturn:
         file = realpath('./data/test_autosize2.txt')
         size = autosize(file)
+
+        assert size == 'File Not Found'
+
+        printb('Test File Not Found')
+        print('file: ,', file)
         print(f'File: {file}\nSize: {size}')
-        self.assertTrue(size == '3.1 KiB')
 
 
 if __name__ == '__main__':
