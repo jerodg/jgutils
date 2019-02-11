@@ -3,8 +3,11 @@
 import logging
 import sys
 import traceback
-from unittest import TestCase
+from os.path import realpath
 
+import pytest
+
+from jgutils.persistentdict import PersistentDict as PerDi
 from jgutils.print_banner import print_banner as printb
 from jgutils.varprint import varprint as vp
 
@@ -13,37 +16,44 @@ DBG = logger.isEnabledFor(logging.DEBUG)
 NFO = logger.isEnabledFor(logging.INFO)
 
 
-class TestVarprint(TestCase):
-    """TestVarprint"""
+@pytest.fixture(autouse=True)
+def init_cache(request):
+    pass
 
-    def test_function(self):
-        printb('Basic Test')
+
+class TestVarprint(object):
+    cache = PerDi(path=realpath('./data/test_varprint.cache'))
+
+    def __exit__(self, exc_type, exc_val, exc_tb):
+        self.cache.sync()
+
+    def test_function(self, request):
         a = 'some_var'
         vp(a)
-        print('')
 
-    def test_object_without_length(self):
-        printb('Test object without length')
+        printb('Basic Test')
 
+    def test_object_without_length(self, request):
         class A(object):
             def __init__(self):
                 self.b = 0
 
         a = A()
-        vp(a)
-        print('')
 
-    def test_list_unpacking(self):
-        printb('Test list unpacking')
+        printb('Test object without length')
+        vp(a)
+
+    def test_list_unpacking(self, request):
         a = ['one', 'two', 3, 'four']
-        vp(a)
-        print('')
 
-    def test_dict_unpacking(self):
-        printb('Test dict unpacking')
-        a = {'one': 2, 'two': 3, 'three': 4}
+        printb('Test list unpacking')
         vp(a)
-        print('')
+
+    def test_dict_unpacking(self, request):
+        a = {'one': 2, 'two': 3, 'three': 4}
+
+        printb('Test dict unpacking')
+        vp(a)
 
 
 if __name__ == '__main__':
