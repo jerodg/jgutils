@@ -4,6 +4,7 @@ import logging
 import re
 import sys
 import traceback
+from typing import Union
 
 logger = logging.getLogger(__name__)
 DBG = logger.isEnabledFor(logging.DEBUG)
@@ -11,33 +12,26 @@ NFO = logger.isEnabledFor(logging.INFO)
 DRE = re.compile(r'(\d+)')
 
 
-def naturalsort(ls: list, mode: int = 1, sort_order: str = 'ASC') -> list:
-    """Natural-Sort
+def naturalsort(item: Union[list, dict], sort_order: str = 'ASC') -> Union[list, dict]:
+    """Sorting for Humans"""
 
-    Sorting for Humans; Two Modes
+    # todo: open these loops up and add cross-call for multiple embedded types (list, dict, tuple)
+    def sort_dict(item: dict, rvrs: bool):
+        return {k: sort_dict(v, rvrs=rvrs) if isinstance(v, dict) else v for k, v in
+                sorted(item.items(), key=lambda _: [int(s) if s.isdigit() else s.lower() for s in re.split(DRE, _)],
+                       reverse=rvrs)}
 
-    mylist = ['elm0', 'elm1', 'Elm2', 'elm9', 'elm10', 'Elm11', 'Elm12', 'elm13', 'elm']
-    mode1 =  ['elm', 'elm0', 'elm1', 'Elm2', 'elm9', 'elm10', 'Elm11', 'Elm12', 'elm13']
-    mode2 =  ['elm', 'elm0', 'elm1', 'Elm2', 'elm9', 'elm10', 'Elm11', 'Elm12', 'elm13']
+    def sort_list(item: list, rvrs: bool):
+        return [sort_list(x, rvrs=rvrs) if isinstance(x, list) else x for x in
+                sorted(item, key=lambda _: [int(s) if s.isdigit() else s.lower() for s in re.split(DRE, _)],
+                       reverse=rvrs)]
 
-    mylist1 = ['e0lm', 'e1lm', 'E2lm', 'e9lm', 'e10lm', 'E12lm', 'e13lm', 'elm', 'e01lm']
-    mode1 =   ['e0lm', 'e1lm', 'e01lm', 'E2lm', 'e9lm', 'e10lm', 'E12lm', 'e13lm', 'elm']
-    mode2 =   ['elm', 'e0lm', 'e1lm', 'E2lm', 'e9lm', 'e01lm', 'e10lm', 'E12lm', 'e13lm']
-
-    :param ls: list
-    :param mode: int (1|2)
-    :param sort_order:
-    :return: list"""
     rvrs = True if sort_order == 'DESC' else False
 
-    if type(ls[0]) is int:
-        return sorted(ls)
-
-    if mode == 1:
-        return sorted(ls, key=lambda _: [int(s) if s.isdigit() else s.lower() for s in re.split(DRE, _)], reverse=rvrs)
-    elif mode == 2:
-        fmt = ['{', '0', ':', '>', str(len(max(ls, key=len))), '}']
-        return sorted(ls, key=lambda _: ''.join(fmt).format(_, max(ls, key=len)).lower(), reverse=rvrs)
+    if type(item) is list:
+        return sort_list(item, rvrs)
+    elif type(item) is dict:
+        return sort_dict(item, rvrs)
     else:
         raise NotImplementedError
 
