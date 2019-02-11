@@ -8,7 +8,7 @@ from typing import NoReturn
 
 import pytest
 
-from jgutils.persistentdict import PersistentDict as PD
+from jgutils.persistentdict import PersistentDict as PerDi
 
 logger = logging.getLogger(__name__)
 DBG = logger.isEnabledFor(logging.DEBUG)
@@ -24,7 +24,7 @@ def init_cache(request):
 
 
 class TestEasyMail(object):
-    cache = PD(path=os.path.realpath('./data/test_easymail.cache'))
+    cache = PerDi(path=os.path.realpath('./data/test_easymail.cache'))
 
     def __exit__(self, exc_type, exc_val, exc_tb):
         self.cache.sync()
